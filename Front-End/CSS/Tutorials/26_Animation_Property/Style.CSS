@@ -1,0 +1,61 @@
+.container {
+    background-color: greenyellow;
+}
+.box {
+    background-color: green;
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    position: relative;
+    animation-name: shiraz;
+    animation-name: olof;
+    animation-duration: 5s;
+    /* animation-iteration-count: infinite; */
+
+    /* animation-fill-mode: forwards; if you want keep rolling the animation */
+    /* animation-fill-mode: alternate; if you want to stop the aninmation at the end */
+
+    /* animation-timing-function: ease-in-out; slow-fast-slow */
+    /* animation-timing-function: ease-in;    slow-fast  */
+    /* animation-timing-function: ease-out; fast-slow */
+
+    /* animation-delay: 3s; starting delay  */
+
+    /* animation-direction:alternate; */
+    /* animation-direction:alternate-reverse; */
+    /* animation-direction:normal ; */
+    /* animation-direction:reverse  ; */
+
+    /* animation shorthand property  */
+    /* animation: animation-name animation-duration animation-timming-function animation-delay animation-iteration-count animation-fill-mode; */
+    animation: shiraz 5s ease-in 1s 12 backwards;
+}
+@keyframes olof {
+    0%{
+        top: 0px;
+        left: 0px;
+
+    }
+    25%{
+        top:250px;
+        left:0px;
+    }
+    75%{
+        top:250px;
+        left:250px;
+        
+    }
+    100%{
+        top: 0px;
+        left: 250px;
+    }
+}
+@keyframes shiraz {
+    from {
+        width: 200px;
+
+    }
+    to {
+        width: 1200px;
+    }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="alert('Shiraz was clicked')" class="btn">Shiraz</button>
+    <button onclick="alert('Abdullah was clicked')" class="btn">Abdullah</button>
+
+    <button class="many">John Cena</button>
+    <button class="many">Randy Orton</button>
+
+    <script>
+        let b1=document.getElementsByClassName('many')[0];
+        let b2=document.getElementsByClassName('many')[1];
+        let b3=document.getElementsByClassName('many')[2];
+        let b4=document.getElementsByClassName('many')[3];
+        let b5=document.getElementsByClassName('many')[4];
+
+        let b=function(e){
+            alert("Cena is the goat")
+        }
+        b1.addEventListener('click',b)
+    </script>
+</body>
+</html>

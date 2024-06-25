@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bookmarks{
+            border: 2px solid black;
+            color: black;
+            list-style: none;
+            margin: 4px;
+            padding: 5px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+    </style>
+    
+</head>
+<body>
+    <script>
+        alert("Enter url of the bookmarks you want or press cancel to stop");
+        let url;
+        while(url!==null){
+        url=prompt("Enter the Url of the Site you want to bookmark");
+        if (url === null) {
+            console.log("The user pressed cancel");
+        } else {
+            name=prompt("What do you want to name your bookmark");
+            console.log(url);
+            let a1 = document.createElement('a');
+            a1.href = url;
+            a1.target="_blank";
+            a1.innerHTML = name;
+            a1.classList.add('bookmarks');
+            document.body.appendChild(a1);
+        }
+        
+    }
+    </script>
+    
+</body>
+</html>

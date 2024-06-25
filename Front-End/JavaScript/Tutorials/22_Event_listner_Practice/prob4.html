@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn{
+            border: 2px solid black;
+            margin: 12px;
+            height: 122vw;
+            width: 200vh;
+        }
+        .colors{
+            background-color: red;
+        }
+            
+    </style>
+</head>
+
+<body>
+    <div class="container">
+            <div class="btn colors"></div>
+            <div class="btn colors"></div>
+            <div class="btn colors"></div>
+            <div class="btn colors"></div>
+            <div class="btn colors"></div>
+    </div>
+    <script>
+        setInterval(function(){
+            let btns = document.getElementsByClassName('btn');
+            Array.from(btns).forEach(function(btn) {
+                btn.classList.toggle('colors');
+            });
+        }, 1000);
+    </script>
+</body>
+</html>

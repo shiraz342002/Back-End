@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js Dates</title>
+    <style>
+        .container{
+            font-size: 25px;
+            background-color: black;
+            color: red;
+            border: 2px solid black;
+            padding: 34px;
+            margin: 4px 4px;
+            text-align: center;
+        }
+        #time{
+            font-weight: bold;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        The PCT TIME IS :
+        <span id="time"></span>
+    </div>
+
+
+    <script>
+        console.log("This is Date and Time tutorial")
+        let obj = new Date();
+        // console.log(typeof now) // now is an object
+        // console.log(obj) // will print the whole date & Time according to Pakistan Standard Time
+
+        //  let obj1= new Date("8-21-2022") //to print desired date 
+        //  console.log(obj1)
+        //  let obj1= new Date(year,month,date,hours,minuts,seconds,milliseconds);
+
+        // you can give date according to upper format as well
+        let obj2= new Date(2002,9,26,4,59,34)
+        console.log(obj2)
+
+        //To Print whole year
+        let year=obj2.getFullYear();
+        console.log("The Year is :"+year)
+
+        // To print the Day no
+        // let day=obj2.getDay();
+        let day=obj.getDay();
+        console.log("The day is: "+day)  // saturday
+
+        // To print the date 
+        let dt=obj.getDate()
+        console.log("The Date is "+dt)
+
+        //to print he month
+        // note: the month starts from index 0 instead of 1 so jan is 0 not 1
+        let month=obj.getMonth();
+        console.log("The month is "+month)
+
+        //To print the Hours
+        let time=obj.getHours();
+        console.log("The Hour is :"+time) // 
+
+        //Tp print seconds i guess getting on my goddamn nerves now
+        let minuts=obj.getSeconds
+        console.log("The Full Time is :"+obj.getHours()+":"+obj.getMinutes()+":"+obj.getSeconds(),"PM");
+
+
+        //you can set the desired time & Date using set();
+        obj.setDate(27);
+        obj.setFullYear(2003)
+        obj.setMonth(9)
+        obj.setHours(15)
+        obj.setMinutes(23)
+        obj.setSeconds(6)
+        console.log(obj)
+
+        //Current Timestamp will print milliseconds passed
+        //can be used to check how much time it took to run code section
+        console.log(Date.now())
+
+
+        setInterval(updateTime,1000);
+
+        function updateTime(){
+            document.getElementById('time').innerHTML=new Date();
+        }
+
+    </script>
+</body>
+</html>

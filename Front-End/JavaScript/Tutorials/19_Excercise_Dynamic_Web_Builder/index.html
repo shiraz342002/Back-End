@@ -1,0 +1,96 @@
+<!-- #****************************************************************************************
+#***                                                                                  ***
+#***  Date: 28/4/2024  Time: 6:14 Pm     Author:  Shiraz Mazhar                       ***
+#***                                                                                  ***
+#***  Working On: Excercise Making Card                                               ***
+#***                                                                                  ***
+#**************************************************************************************** -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        font-family:Arial, Helvetica, sans-serif
+    }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .container {
+        height: auto;
+        border: 2px solid black;
+        background-color: black;
+        padding: 10px;
+        margin-bottom: 20px; /* Add margin between cards */
+        
+    }
+    
+    #thumb {
+        height: 85px;
+        width: auto;
+        float: left; /* Float the thumbnail to the left */
+        margin-right: 10px; /* Add some space between the thumbnail and other content */
+        border: 2px solid black;
+        border-radius: 13px;
+        
+    }
+    
+    #title {
+        color: white;
+        font-size: 16px; /* Increase font size for the title */
+        margin-bottom: 5px; /* Add some space between title and other content */
+    }
+    
+    #c_name,
+    #views,
+    #months {
+        color: #aaaaaa;
+        font-size: 14px;
+        margin-bottom: 10px; /* Add some space between each element */
+        display: block; /* Make each element a block-level element to appear on a new line */
+    }
+    #c_name{
+        position: relative;
+        top: 5px;
+    }
+    #months{
+        color: #aaaaaa;
+        font-size: 14px;
+        margin-bottom: 5px; /* Add some space between each element */
+        display: block;
+        position: relative;
+        bottom: 42px;
+        left: 144px;
+    }
+    #views{
+        color: #aaaaaa;
+        font-size: 14px;
+        margin-bottom: 5px; /* Add some space between each element */
+        display: block;
+        position: relative;
+        bottom: 20px;
+        left: 104px;
+    }
+    
+        
+
+        
+</style>
+<body>
+    <div class="container-wrapper">
+    <div class="container">
+        <img id="thumb" src="https://i.ytimg.com/vi/Xoz_KYfaSkk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCdR53-XLNNOfdLPnPoIIVBKTYuGQ" alt="">
+        <span id="title">Introduction to javascript Code WIth Harry</span>
+        <span id="c_name">CodeWithHarry</span>
+        <span id="views">727k</span>
+        <span id="months">2 months ago</span>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

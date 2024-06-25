@@ -1,0 +1,37 @@
+ <!-- #***********************************************************************************
+ #***                                                                                  ***
+ #***  Date: 23/10/2023  Time: 10:26 Am     Author:  Shiraz Mazhar                     ***
+ #***                                                                                  ***
+ #***  Working On : CSS Overflow Property                                              ***
+ #***                                                                                  ***
+ #**************************************************************************************** -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Overflow Property</title>
+    <style>
+        .box{
+            border: 2px solid black;
+            width: 30vw;
+            height: 40vh;
+            /*to make a scroll bar*/
+            /*overflow: scroll;*/
+            /*there will be a scroll bar only if text is overflowwing*/
+
+           /* overflow: auto;
+            white-space:nowrap;
+            text-overflow: ellipsis;*/
+             overflow: auto auto; 
+        }
+    </style>
+ </head>
+ <body>
+    <div class="box">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente hic totam mollitia numquam, quod veniam ipsum est sequi obcaecati eaque voluptatum iste porro.
+    </div>
+    
+ </body>
+ </html>
