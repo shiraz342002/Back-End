@@ -1,0 +1,11 @@
+// UPDATE
+use("Crud_Operations_Mongo")
+db.students.updateOne(
+    { CGPA: 3.3 },         
+    { $set: { CGPA: 3.5 } }
+  );
+  //Update on aall instances
+db.students.updateMany(
+  {CGPA:3.5},
+  {$set:{CGPA:2.9}}
+)

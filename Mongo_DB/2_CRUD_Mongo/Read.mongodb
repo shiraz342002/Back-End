@@ -1,0 +1,10 @@
+//Read All
+use("Crud_Operations_Mongo")
+let d=db.students;
+console.log(d);
+// Read by something specefic
+let a = db.students.find({Age:23})
+//To just find the first instance
+let f = db.students.findOne({Age:23});
+console.log(a.toArray());
+console.log(a.count()); //To check how many total documents
