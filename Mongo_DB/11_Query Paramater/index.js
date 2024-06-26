@@ -1,17 +1,23 @@
 import express from "express";
 import mongoose from "mongoose";
-import userRouter from "./routes/user.js";
+import bookRouter from "./Routes/book.js";
 
 const app = express();
-
 app.use(express.json());
 
-app.use("/users", userRouter);
+const connection = mongoose.connection;
 
-mongoose.connect("mongodb://localhost:27017/express-pagination", {
+connection.once("connected", () => console.log("Database Connected ~"));
+
+connection.on("error", (error) => console.log("Database Error: ", error));
+
+mongoose.connect("mongodb://127.0.0.1:27017/my_first_data_base", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
+
+app.use("/book", bookRouter);
+
 app.listen(3000, () => {
-    console.log("Server started on port 3000");
+    console.log("Server running on port 3000");
 });
