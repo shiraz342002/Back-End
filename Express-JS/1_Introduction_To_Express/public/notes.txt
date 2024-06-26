@@ -1,0 +1,21 @@
+Alright first step To Create a basic Node server
+
+import { createServer } from 'node:http';
+const server = createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Finally this shit is working');
+});
+server.listen(3000, '127.0.0.1', () => {
+  console.log('Listening on 127.0.0.1:3000');
+});
+ 
+1_Create : main.js
+2_Make it as Node Project by : npm init -y 
+3_Install Express js by : npm i express 
+Optional 
+    Install old version of express using : npm i @4
+4_Rename the js file to with cjs to use it as common js if using ecma then .js is fine
+
+From Harry Video What can app do 
+app.get or app.post or app.put or app.delete(path,handler)
+& Backend ka code sensative ha joke kisi se share nhi karna 
