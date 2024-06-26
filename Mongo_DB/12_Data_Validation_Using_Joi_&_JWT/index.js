@@ -153,7 +153,5 @@ app.get("/authenticate", authenticate, (req, res) => {
     console.log(req.user); // { userId: 123, username: "user1", admin: true }
     res.json({ message: "Welcome to the API" });
 });
-
-
 const port = 3000;
 app.listen(port);
