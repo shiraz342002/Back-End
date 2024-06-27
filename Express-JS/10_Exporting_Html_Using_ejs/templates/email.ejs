@@ -1,0 +1,24 @@
+<h1>Hello <%= name %></h1>
+<p>Here are your products:</p>
+<% if (products.length > 0) { %>
+<ul>
+    <% products.forEach(function(product) { %>
+    <li><%= product.name %></li>
+    <% }); %>
+</ul>
+<% } else { %>
+<p>You have no products.</p>
+<% } %>
+
+<p>
+    If you have any questions, please contact us at
+    <a href="mailto:<%= email %>"><%= email %></a>.
+</p>
+
+<p>Thanks!</p>
+
+<p><%= company %></p>
+<p><%= address %></p>
+<p><%= phone %></p>
+<p><%= website %></p>
+<img src="<%= logo %>" alt="<%= company %> logo" />
