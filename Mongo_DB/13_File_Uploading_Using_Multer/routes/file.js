@@ -11,7 +11,6 @@ router.get("/", async (req, res) => {
         res.status(500).send(error);
     }
 });
-
 router.get("/:id", async (req, res) => {
     try {
         const data = await FileModel.findById(req.params.id);
@@ -20,7 +19,6 @@ router.get("/:id", async (req, res) => {
         res.status(500).send(error);
     }
 });
-
 router.post("/", upload.single("file"), async (req, res) => {
     try {
         if (req.file) {
