@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import { httpResponse } from "../utils/index.js";
 import config from "../config/index.js";
-
 export const authenticate = (req, res, next) => {
 	const token = req.header("authorization");
 	if (!token)
@@ -10,7 +9,6 @@ export const authenticate = (req, res, next) => {
 			"Need token (JWT) to hit this API",
 			"Access denied. No token provided."
 		);
-
 	const bearerToken = token.split(" ")[1];
 
 	try {
