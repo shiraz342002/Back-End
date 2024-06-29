@@ -7,7 +7,7 @@ router.get("/",(req,res)=>{
 })
 router.get("/:id", (req, res) => {
     const id = parseInt(req.params.id, 10); 
-    const student = students.find((student) => student.id === id); 
+    const student = students.find((student) => student.id == id); 
     if (student) {
         console.log("Student found:", student); 
         res.send(student); 
