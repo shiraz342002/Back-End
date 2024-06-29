@@ -32,8 +32,10 @@ router.put("/:id",(req,res)=>{
     }
     console.log(students);
 })
+
 router.delete("/:id",(req,res)=>{
-    students = students.filter((student) => student.id !== parseInt(req.params.id, 10));
+    const id = req.params.id;
+    students = students.filter(student => student.id !== id);
     res.send(students);
     console.log(students);
 })
