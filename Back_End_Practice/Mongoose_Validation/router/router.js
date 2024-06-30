@@ -1,6 +1,6 @@
 import Login_Model from "../models/login.js";
 import  express  from "express";
-import validate from "./middlewares/validate.js"
+import validate from "../middlewares/validate.js"
 
 const router = express.Router();
 router.get("/",async(req,res)=>{
@@ -19,7 +19,7 @@ router.get("/:id",async(req,res)=>{
         res.json({message});
     }
 });
-router.post("/",validate(UserModel),async(req,res)=>{
+router.post("/",validate(Login_Model),async(req,res)=>{
     try{
         const login = await Login_Model.create(req.body);
         res.status(200).json(login);
