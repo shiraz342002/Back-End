@@ -1,10 +1,12 @@
 import Login_Model from "../models/login.js";
 import  express  from "express";
 const router = express.Router();
-router.get("/",async(req,res)=>{
+import jwt from "jsonwebtoken";
+router.get("/retrive",async(req,res)=>{
     try{
-        const login = await Login_Model.findOne();
+        const login = await Login_Model.find();
         res.json(login);
+
     }catch(message){
         res.json({message});
     }
@@ -17,6 +19,21 @@ router.get("/:id",async(req,res)=>{
         res.json({message});
     }
 });
+router.post("/check", (req, res) => {
+    const { username, password } = req.body;
+    const user=Login_Model.findOne(username);
+    if (password === user.password) {
+      const payload = {
+        userId: 123,
+        username: "user1",
+        admin: true,
+      };
+      const token = jwt.sign(payload, "secretKey");
+      res.json({ token });
+    } else {
+      res.status(401).json({ message: "Invalid credentials" });
+    }
+  });
 router.post("/",async(req,res)=>{
     try{
         const login = await Login_Model.create(req.body);
