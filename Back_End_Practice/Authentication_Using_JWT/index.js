@@ -1,26 +1,23 @@
 import express from "express";
-import mongoose from "mongoose";
-import Login_Router from "./router/router.js";
-
 const app = express();
-const port = 3000;
-const conn = "mongodb://localhost:27017/Login";
-app.use(express.json())
-mongoose.connect(conn, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+import jwt from "jsonwebtoken";
+app.use(express.json());
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  if (username === "username" && password === "password") {
+    const payload = {
+      userId: 123,
+      username: "user1",
+      admin: true,
+    };
+    const token = jwt.sign(payload, "secretKey");
+    res.json({ token });
+  } else {
+    res.status(401).json({ message: "Invalid credentials" });
+  }
 });
 
-mongoose.connection.once("open", () => {
-    console.log("Database Connected ~");
-});
-
-mongoose.connection.on("error", (error) => {
-    console.log("Database Connection Failed ~", error);
-});
-app.use("/login",Login_Router);
-
-
-app.listen(port, () => {
-    console.log(`Server Running on port ${port}`);
+app.listen(3000, () => {
+  console.log("Server started on port 3000");
 });
