@@ -53,11 +53,18 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE student by ID
-router.delete("/:id", (req, res) => {
+router.delete("delete/:id", (req, res) => {
     const id = parseInt(req.params.id, 10);
     students = students.filter(student => student.id !== id);
     res.send(students);
     console.log("Student deleted, new list:", students);
 });
+
+//Delete All
+router.delete("/delete_all",(req,res)=>{
+    students = []; // Clear the students array
+    res.status(200).send({ message: "All students deleted successfully" });
+    console.log("All students deleted, new list:", students);
+})
 
 export default router;
