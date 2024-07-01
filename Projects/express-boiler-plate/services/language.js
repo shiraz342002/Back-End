@@ -67,7 +67,7 @@ const languageService = {
     } catch (error) {
       return { message: "error", data: error.message };
     }
-  },
+  }
 };
 
 export default languageService;

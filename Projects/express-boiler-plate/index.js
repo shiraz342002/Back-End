@@ -2,6 +2,7 @@ import {} from "dotenv/config";
 import express from "express";
 import loaders from "./loaders/index.js";
 import config from "./config/index.js";
+
 import { protectedRouter, unProtectedRouter } from './routes/index.js';
 async function startServer() {
   const app = express();
@@ -12,7 +13,7 @@ async function startServer() {
     console.log(`Server Started ~ :${config.env.port}`)
   );
   app.use('/api/protected', protectedRouter);
-  app.use('/api/unprotected', unProtectedRouter);
+  app.use('/',unProtectedRouter);
 
   process.on("uncaughtException", (err) => {
     console.log("uncaughtException! Shutting Down the Server...");
