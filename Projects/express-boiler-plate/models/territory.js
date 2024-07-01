@@ -9,7 +9,7 @@ const schema = Schema({
     maxlength: 20,
     lowercase: true,
     //trim:true,
-    enum:["name"]
+    enum:["name","test"]
 
     
   },

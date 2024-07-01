@@ -140,7 +140,6 @@ const UserService = {
 
   removeById: async (id) => {
     const data = await UserModel.findOne({ _id: id });
-
     if (data) {
       data.is_active = false;
       const deactivateUser = await data.save();

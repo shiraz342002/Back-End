@@ -27,8 +27,8 @@ const add = {
   body: Joi.object().keys({
     name: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.object(),
-    brand_logo: Joi.object(),
+    image: Joi.string().uri().optional(),
+    brand_logo: Joi.string().uri().optional(),
   }),
 }
 

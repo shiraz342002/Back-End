@@ -9,7 +9,7 @@ import httpResponse from "../../utils/httpResponse.js";
     if (data.message === "success") {
       return httpResponse.SUCCESS(res, data.data)
     } else {
-      return httpResponse.INTERNAL_SERVER_ERROR(res, data.data)
+      return httpResponse.INTERNAL_SERVER(res, data.data)
     }
   },
   
@@ -19,7 +19,7 @@ import httpResponse from "../../utils/httpResponse.js";
     if (data.message === "success") {
       return httpResponse.SUCCESS(res, data.data)
     } else {
-      return httpResponse.INTERNAL_SERVER_ERROR(res, data.data)
+      return httpResponse.INTERNAL_SERVER(res, data.data)
     }
   },
 
@@ -29,7 +29,7 @@ import httpResponse from "../../utils/httpResponse.js";
     if (data.message === "success") {
       return httpResponse.CREATED(res, data.data)
     } else {
-      return httpResponse.INTERNAL_SERVER_ERROR(res, data.data)
+      return httpResponse.INTERNAL_SERVER(res, data.data)
     }
   },
 
@@ -41,7 +41,7 @@ import httpResponse from "../../utils/httpResponse.js";
     if (data.message === "success") {
       return httpResponse.SUCCESS(res, data.data)
     } else {
-      return httpResponse.INTERNAL_SERVER_ERROR(res, data.data)
+      return httpResponse.INTERNAL_SERVER(res, data.data)
     }
   },
 
@@ -52,7 +52,7 @@ import httpResponse from "../../utils/httpResponse.js";
       return httpResponse.SUCCESS(res, data.data)
     }
     else {
-      return httpResponse.INTERNAL_SERVER_ERROR(res, data.data)
+      return httpResponse.INTERNAL_SERVER(res, data.data)
     }
   }
 }
