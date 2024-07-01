@@ -3,6 +3,7 @@ import express from "express";
 import productRoute from "./product/index.js";
 import languageRoute from "./language/index.js";
 import territoryRoute from "./territory/index.js";
+import brandRoute from "./brand/index.js"
 import userRoute from "./user/index.js";
 const protectedRouter = express.Router();
 const unProtectedRouter = express.Router();
@@ -10,6 +11,7 @@ const unProtectedRouter = express.Router();
 protectedRouter.use("/product", productRoute);
 protectedRouter.use("/language", languageRoute);
 protectedRouter.use("/territory", territoryRoute);
+protectedRouter.use("/brand",brandRoute)
 // Un-Protected Routes
 unProtectedRouter.use("/user", userRoute);
 

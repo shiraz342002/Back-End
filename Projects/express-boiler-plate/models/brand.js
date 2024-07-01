@@ -25,5 +25,4 @@ const brandSchema = new Schema({
     default: true,
   },
 });
-
 export default mongoose.model("Brand", brandSchema);
