@@ -1,11 +1,26 @@
 import express from "express";
-const app = express();
-import jwt from "jsonwebtoken";
-import login_router from "./router/router.js"
-app.use(express.json());
+import mongoose from "mongoose";
+import Login_Router from "./router/router.js";
 
-app.use("/",login_router)
-app.listen(3000, () => {
-  console.log("Server started on port 3000");
+const app = express();
+const port = 3000;
+const conn = "mongodb://localhost:27017/Login";
+app.use(express.json())
+mongoose.connect(conn, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 });
-https://www.youtube.com/watch?v=mbsmsi7l3r4&ab_channel=WebDevSimplified
+
+mongoose.connection.once("open", () => {
+    console.log("Database Connected ~");
+});
+
+mongoose.connection.on("error", (error) => {
+    console.log("Database Connection Failed ~", error);
+});
+app.use("/login",Login_Router);
+
+
+app.listen(port, () => {
+    console.log(`Server Running on port ${port}`);
+});
