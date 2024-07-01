@@ -11,17 +11,6 @@ router.get("/retrive",async(req,res)=>{
         res.json({message});
     }
 })
-router.get("/:id", async (req, res) => {
-    try {
-        const login = await Login_Model.findById(req.body.id);
-        if (!login) {
-            return res.status(404).json({ message: "Login not found" });
-        }
-        res.status(200).json(login);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
 router.post("/",async(req,res)=>{
     try{
         const login = await Login_Model.create(req.body);
@@ -84,6 +73,8 @@ router.post("/check", async (req, res) => {
     }
   });
 function authenticate_token(req,res,next){
+    console.log("Im executing");
+    
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
     if(token==null){
@@ -95,4 +86,15 @@ function authenticate_token(req,res,next){
         next()
     })
 }
+router.get("/:id", async (req, res) => {
+    try {
+        const login = await Login_Model.findById(req.body.id);
+        if (!login) {
+            return res.status(404).json({ message: "Login not found" });
+        }
+        res.status(200).json(login);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 export default router

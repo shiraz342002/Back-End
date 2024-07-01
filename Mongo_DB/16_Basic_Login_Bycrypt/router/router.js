@@ -1,30 +1,35 @@
 import Login_Model from "../models/login.js";
 import express from "express";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  try {
-    const login = await Login_Model.findOne();
-    res.json(login);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+function authenticate_token(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (!token) {
+    return res.sendStatus(401);
   }
-});
-
-router.get("/:id", async (req, res) => {
-  try {
-    const login = await Login_Model.findById(req.params.id);
-    if (!login) {
-      return res.status(404).json({ message: "User not found" });
+  jwt.verify(token, "defaultSecretKey", (err, decoded) => {
+    if (err) {
+      return res.sendStatus(403);
     }
+    if (decoded.user_name !== "mercury_admin") {
+      return res.status(403).json({ message: "Forbidden: Access restricted" });
+    }
+    req.user = decoded;
+    next();
+  });
+}
+router.get("/admin", authenticate_token, async (req, res) => {
+  try {
+    const login = await Login_Model.find();
     res.json(login);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
-
 router.post("/signup", async (req, res) => {
   try {
     const { user_name, password } = req.body;
@@ -34,6 +39,7 @@ router.post("/signup", async (req, res) => {
         .status(400)
         .json({ message: "Username and password are required" });
     }
+
     const existingUser = await Login_Model.findOne({ user_name });
     if (existingUser) {
       return res.status(400).json({ message: "Username already exists" });
@@ -41,18 +47,16 @@ router.post("/signup", async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const login = await Login_Model.create({
-      user_name,
-      password: hashedPassword,
-    });
+    const newUser = new Login_Model({ user_name, password: hashedPassword });
+    await newUser.save();
 
-    res.status(200).json(login);
+    res.status(201).json({ message: "User created successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.post("/check", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { user_name, password } = req.body;
 
@@ -64,28 +68,31 @@ router.post("/check", async (req, res) => {
 
     const user = await Login_Model.findOne({ user_name });
     if (!user) {
-      return res.status(400).send("User does not exist");
+      return res.status(400).json({ message: "User not found" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (isMatch) {
-      res.send("Successfully logged in");
-    } else {
-      res.status(400).send("Invalid credentials");
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
     }
+
+    const token = jwt.sign({ user_name: user.user_name }, "defaultSecretKey", {
+      expiresIn: "1h",
+    });
+
+    res.json({ token });
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
-
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", authenticate_token, async (req, res) => {
   try {
     const { user_name, password } = req.body;
 
-    if (!user_name || !password) {
+    if (req.user.user_name !== "mercury_admin") {
       return res
-        .status(400)
-        .json({ message: "Username and password are required" });
+        .status(403)
+        .json({ message: "Forbidden: Access restricted to mercury_admin" });
     }
 
     const updatedData = { user_name };
@@ -102,31 +109,7 @@ router.patch("/:id", async (req, res) => {
     if (!login) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.status(200).json(login);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-router.delete("/test", async (req, res) => {
-  try {
-    const login = await Login_Model.deleteOne({ user_name: "Zubaida Naz" });
-    if (login.deletedCount === 0) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    res.status(200).json({ message: "User deleted successfully", data: login });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-router.delete("/:id", async (req, res) => {
-  try {
-    const login = await Login_Model.findByIdAndDelete(req.params.id);
-    if (!login) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    res.status(200).json(login);
+    res.json(login);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

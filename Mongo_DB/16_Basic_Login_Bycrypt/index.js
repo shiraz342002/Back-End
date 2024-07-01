@@ -18,7 +18,7 @@ mongoose.connection.once("open", () => {
 mongoose.connection.on("error", (error) => {
     console.log("Database Connection Failed ~", error);
 });
-app.use("/login",Login_Router);
+app.use("/",Login_Router);
 
 
 app.listen(port, () => {
